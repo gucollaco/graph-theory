@@ -12,7 +12,9 @@ using namespace std;
 // a struct Cell component represents a cell, with the distance to the initial cell being incremented according the process goes on
 // or it could just store coordinates, without having the distance attribute being used
 struct Cell {
-    int x, y, dist = 0;
+    int x;
+    int y;
+    int dist;
 };
 
 // checks if the knight's movement is possible
@@ -23,7 +25,7 @@ bool insideBoard(int x, int y) {
 // finds out the minimum amount of steps to make to reach the destination from the initial spot
 int BreadthFirstSearch(Cell init, Cell dest) {
     // possible moves the knight can make
-    Cell moves[] = { {2,1}, {2,-1}, {-2,1}, {-2,-1}, {1,2}, {1,-2}, {-1,2}, {-1,-2} };
+    Cell moves[] = { {2,1,0}, {2,-1,0}, {-2,1,0}, {-2,-1,0}, {1,2,0}, {1,-2,0}, {-1,2,0}, {-1,-2,0} };
 
     // matrix to keep the already visited positions
     bool visited[size][size];
@@ -99,8 +101,8 @@ int main() {
 
     // cells for the initial and destination positions
     // coordinates for x and y based on the inputs
-    Cell init = { letter_num.find(str_init[0])->second, (str_init[1] - '0') - 1 };
-    Cell dest = { letter_num.find(str_dest[0])->second, (str_dest[1] - '0') - 1 };
+    Cell init = { letter_num.find(str_init[0])->second, (str_init[1] - '0') - 1, 0 };
+    Cell dest = { letter_num.find(str_dest[0])->second, (str_dest[1] - '0') - 1, 0 };
 
     // prints the result found
     cout << BreadthFirstSearch(init, dest) << endl;
