@@ -10,7 +10,7 @@ using namespace std;
 #define inf numeric_limits<int>::max()
 
 // graph - adjacency list
-vector<vector<pair<int, int>>>graph(maximum * 2 + 1);
+vector<vector<pair<int, int> > >graph(maximum * 2 + 1);
 
 // distance to every node
 vector<int> dist(maximum * 2, inf);
@@ -29,7 +29,7 @@ void addEdge(int a, int b, int w) {
 // dijkstra from src do dest points
 int dijkstra(int src, int dest) {
     // priority queue - distance nodes
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> queue;
+    priority_queue<pair<int, int>, vector<pair<int, int> >, greater<pair<int, int> > > queue;
 
     // push first node to queue and set dist to 0
     queue.push({ 0, src });
@@ -42,10 +42,10 @@ int dijkstra(int src, int dest) {
         queue.pop();
 
         // go to all neighbours of u
-        for (pair<int, int> pair : graph[u]) {
+        for(vector<pair<int, int> >::iterator it = graph[u].begin(); it!= graph[u].end(); ++it) {
             // v is the node and w the weight
-            int v = pair.first;
-            int w = pair.second;
+            int v = (*it).first;
+            int w = (*it).second;
 
             // check if there is a shorter path to v through u
             if (dist[u] + w < dist[v]) {
