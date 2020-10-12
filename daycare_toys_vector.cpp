@@ -49,9 +49,9 @@ int maxBipartiteMatchingFlow() {
 
     // for each child
     for (int u = 0; u < N; u++) {
-        // mark all toys as not checked
+        // mark all toys possible as not checked
         // for next child 
-        bool visited[N];
+        bool visited[M];
         memset(visited, 0, sizeof(visited));
   
         // check if u can get a toy
